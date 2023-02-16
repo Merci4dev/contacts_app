@@ -1,0 +1,51 @@
+  <!-- Menu Secction -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand font-weight-bold" href="index.php">
+              <img class="mr-2" src="./statics/img/favicon-2.jpg" />
+              ContactsApp PHP
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <!-- Diferenciando si el user esta logeado o no  -->
+              <div class="d-flex justify-content-between w-100">
+                  <ul class="navbar-nav">
+                      <!-- Si esta logeado muestra estas rutas -->
+                      <?php if (isset($_SESSION["user"])) : ?>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./home.php">Home</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./contacts-add.php">Add Contact</a>
+                          </li>
+
+                          <li class="nav-item">
+                              <a class="nav-link" href="./security-notes.html">Security</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./logout.php">Logout</a>
+                          </li>
+                          <!-- si no esta logeado muestra estas -->
+                      <?php else : ?>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./register.php">Register</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="./login.php">Loging</a>
+                          </li>
+                      <?php endif ?>
+                  </ul>
+
+                  <!-- Este div pinta el email del user. aqui usamos la session para poder saber cual es el emal del user logeado -->
+                  <!-- Primero validamo que exista la session de lo contrario arroja error  -->
+                  <?php if (isset($_SESSION["user"])) : ?>
+                      <div class="p-2 text-white">
+                          </p> <?= $_SESSION["user"]["name"] ?>
+                      </div>
+                  <?php endif ?>
+              </div>
+          </div>
+      </div>
+  </nav>
